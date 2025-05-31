@@ -1,6 +1,6 @@
 # Font Awesome Icons Gallery
 
-This is a website coded with by AI that showcases Font Awesome icons.
+This is a website coded with AI that showcases Font Awesome icons.
 
 ## Preview
 
@@ -14,6 +14,7 @@ This project provides a gallery interface for browsing and selecting Font Awesom
 - Brand icons
 
 ## Features
+- Click to copy any icon code, or download the svg directly
 - Browse through Font Awesome icon collection
 - View icons in different styles
 - Easy to use interface
