@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Font Awesome Gallery</title>
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="icon" type="image/svg+xml" href="svgs/solid/icons.svg">
+    <style>
+        :root {
+            /* Colors */
+            --primary-color: #4a90e2;
+            --secondary-color: #6c63ff;
+            --gradient-color-1: #4a90e2; /* blue */
+            --gradient-color-2: #6c63ff; /* purple */
+            --gradient-color-3: #ff6b6b; /* red */
+            --gradient-color-4: #48cfad; /* green */
+            --background-color: #f5f5f5;
+            --card-background: #ffffff;
+            --text-primary: #333333;
+            --text-secondary: #666666;
+            --text-muted: #999999;
+            --border-color: #dddddd;
+            --toast-background: #323232;
+            --toast-text: #ffffff;
+            --clear-button-color: #6c757d;
+            --clear-button-hover: #495057;
+            --footer-bg: rgba(0, 0, 0, 0.05);
+            --footer-text: var(--text-secondary);
+            
+            /* Tag panel design */
+            --tag-panel-bg: rgba(255, 255, 255, 0.98);
+            --tag-panel-shadow: 0 5px 20px rgba(0,0,0,0.15);
+            --tag-button-bg: #f0f2f5;
+            --tag-button-hover: var(--primary-color);
+            --tag-button-text: var(--text-secondary);
+            --tag-button-hover-text: white;
+            --hover-delay: 800ms;
+            --panel-leave-delay: 1000ms;
+            
+            /* Version colors */
+            --version-tag-bg: #e3f2fd;
+            --version-tag-text: #1976d2;
+            --version-panel-bg: #f8f9fa;
+            --version-panel-border: #e9ecef;
+            
+            /* Icon size */
+            --icon-size: 36px;
+            
+            /* Gradients */
+            --header-gradient: linear-gradient(
+                238deg,
+                var(--gradient-color-1),
+                var(--gradient-color-2),
+                var(--gradient-color-3),
+                var(--gradient-color-4),
+                var(--gradient-color-1)
+            );
+            
+            /* Shadows */
+            --card-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            --hover-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            --input-shadow: 0 2px 6px rgba(0,0,0,0.05);
+            
+            /* Style filter buttons */
+            --style-button-bg: rgba(255, 255, 255, 0.1);
+            --style-button-text: rgba(255, 255, 255, 0.8);
+            --style-button-active: rgba(255, 255, 255, 0.95);
+            --style-button-active-bg: rgba(255, 255, 255, 0.2);
+            --style-button-hover: rgba(255, 255, 255, 1);
+            
+            /* Options panel */
+            --panel-bg: rgba(255, 255, 255, 0.98);
+            --panel-shadow: 0 5px 20px rgba(0,0,0,0.15);
+            --panel-border: rgba(0, 0, 0, 0.1);
+            --option-button-bg: #f0f2f5;
+            --option-button-text: var(--text-secondary);
+            --option-button-active: var(--primary-color);
+            --option-button-active-text: white;
+            --panel-width: 240px;
+        }
+
+        @keyframes gradientAnimation {
+            0% {
+                background-position: 0% 50%;
+                background-size: 300% 300%;
+            }
+            25% {
+                background-position: 100% 50%;
+                background-size: 400% 400%;
+            }
+            50% {
+                background-position: 100% 0%;
+                background-size: 300% 300%;
+            }
+            75% {
+                background-position: 0% 100%;
+                background-size: 400% 400%;
+            }
+            100% {
+                background-position: 0% 50%;
+                background-size: 300% 300%;
+            }
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+            padding: 0;
+            background: var(--background-color);
+            width: 100%;
+            min-width: 320px;
+            overflow-x: hidden;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            margin: 0;
+        }
+
+        .header {
+            background: var(--header-gradient);
+            background-size: 300% 300%;
+            animation: gradientAnimation 20s ease infinite;
+            padding: 40px 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: inherit;
+            filter: blur(10px);
+            opacity: 0.7;
+            z-index: 0;
+        }
+
+        .header-title, .controls-container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .header-title {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .header-icon {
+            font-size: 2em;
+            color: white;
+        }
+
+        h1 {
+            color: white;
+        }
+
+        .controls-container {
+            max-width: 100%;
+            width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+
+        .search-container {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .version-container {
+            min-width: 200px;
+        }
+
+        .search-wrapper {
+            position: relative;
+            flex: 1;
+        }
+
+        #search {
+            width: 100%;
+            padding: 12px 20px;
+            font-size: 16px;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            background: var(--card-background);
+            box-shadow: var(--input-shadow);
+            transition: all 0.2s ease;
+        }
+
+        #search:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+        }
+
+        .search-clear {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: var(--clear-button-color);
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+
+        .search-clear:hover {
+            color: var(--clear-button-hover);
+            background: rgba(0,0,0,0.05);
+        }
+
+        .search-clear.hidden {
+            display: none;
+        }
+
+        #versionSelect {
+            width: 100%;
+            padding: 12px 20px;
+            font-size: 16px;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            background: var(--card-background);
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            background-size: 1em;
+        }
+
+        #versionSelect:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+        }
+
+        .icons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 20px;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            box-sizing: border-box;
+        }
+
+        .icon-item {
+            background: var(--card-background);
+            padding: 20px 10px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: var(--card-shadow);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 2px solid transparent;
+            user-select: none;
+            position: relative;
+            z-index: 1;
+        }
+
+        .icon-item i {
+            font-size: var(--icon-size);
+            margin-bottom: 15px;
+            color: var(--text-primary);
+            transition: all 0.2s ease;
+        }
+
+        .icon-item.show-tags {
+            z-index: 100;
+            transform: scale(1.1);
+            border-color: var(--primary-color);
+            box-shadow: var(--hover-shadow);
+        }
+
+        .tag-panel {
+            position: absolute;
+            left: calc(100% + 10px);
+            top: 50%;
+            transform: translateY(-50%) scale(0.95);
+            background: var(--tag-panel-bg);
+            padding: 15px;
+            border-radius: 12px;
+            box-shadow: var(--tag-panel-shadow);
+            min-width: 200px;
+            max-width: 300px;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            border: 2px solid var(--primary-color);
+        }
+
+        .tag-section {
+            background: var(--version-panel-bg);
+            border-radius: 6px;
+            padding: 10px;
+        }
+
+        .version-section {
+            border-top: 1px solid var(--version-panel-border);
+            margin-top: 8px;
+            padding-top: 8px;
+            background: var(--version-panel-bg);
+            border-radius: 6px;
+            padding: 10px;
+        }
+
+        .version-tag {
+            background: var(--version-tag-bg);
+            color: var(--version-tag-text);
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 11px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline-block;
+            margin: 2px;
+        }
+
+        .version-tag:hover {
+            background: var(--version-tag-text);
+            color: var(--version-tag-bg);
+            transform: translateY(-1px);
+        }
+
+        .icon-item .icon-versions {
+            display: none;
+        }
+
+        .icon-item:hover .tag-panel.show-left {
+            right: calc(100% + 10px);
+            left: auto;
+        }
+
+        .icon-item.show-tags .tag-panel {
+            opacity: 1;
+            transform: translateY(-50%) scale(1);
+            pointer-events: auto;
+        }
+
+        .tag-button {
+            background: var(--version-tag-bg);
+            color: var(--version-tag-text);
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 11px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            border: none;
+            width: auto;
+            display: inline-block;
+            margin: 2px;
+        }
+
+        .tag-button:hover {
+            background: var(--version-tag-text);
+            color: var(--version-tag-bg);
+            transform: translateX(0) translateY(-1px);
+        }
+
+        .tag-panel-header {
+            font-size: 14px;
+            color: var(--text-primary);
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+
+        .icon-item .icon-tags {
+            display: none;
+        }
+
+        .total-count {
+            text-align: center;
+            margin: 20px 0;
+            color: var(--text-secondary);
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--toast-background);
+            color: var(--toast-text);
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 14px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .toast.show {
+            opacity: 1;
+        }
+
+        footer {
+            background: var(--footer-bg);
+            padding: 20px;
+            text-align: center;
+            color: var(--footer-text);
+            font-size: 14px;
+            width: 100%;
+            flex-shrink: 0;
+            margin-top: auto;
+        }
+
+        footer p {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: nowrap;
+        }
+
+        footer i {
+            margin: 0 5px;
+        }
+
+        .options-panel {
+            position: fixed;
+            left: -240px; /* Start hidden - panel width */
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--panel-bg);
+            border-radius: 0 12px 12px 0;
+            box-shadow: var(--panel-shadow);
+            padding: 20px;
+            width: var(--panel-width);
+            border: 1px solid var(--panel-border);
+            z-index: 1000;
+            transition: left 0.3s ease;
+        }
+
+        .options-panel::after {
+            content: '☰';
+            position: absolute;
+            right: -40px;
+            top: 0;
+            height: 100%;
+            background: var(--panel-bg);
+            width: 40px;
+            border-radius: 0 8px 8px 0;
+            border: 1px solid var(--panel-border);
+            border-left: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 5px 0 10px rgba(0,0,0,0.1);
+            font-size: 20px;
+            color: var(--text-secondary);
+            transition: color 0.3s ease, opacity 0.3s ease;
+        }
+
+        .options-panel:hover::after {
+            color: var(--primary-color);
+            opacity: 0;
+        }
+
+        .options-panel:hover {
+            left: 0;
+        }
+
+        .options-group {
+            margin-bottom: 20px;
+        }
+
+        .options-group:last-child {
+            margin-bottom: 0;
+        }
+
+        .options-title {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+        }
+
+        .copy-options {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .option-button {
+            background: var(--option-button-bg);
+            color: var(--option-button-text);
+            border: none;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-align: left;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .option-button i {
+            font-size: 14px;
+            opacity: 0.7;
+        }
+
+        .option-button:hover {
+            background: var(--option-button-active);
+            color: var(--option-button-active-text);
+        }
+
+        .option-button.active {
+            background: var(--option-button-active);
+            color: var(--option-button-active-text);
+        }
+
+        .color-picker {
+            width: 100%;
+            padding: 5px;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .color-picker::-webkit-color-swatch-wrapper {
+            padding: 0;
+        }
+
+        .color-picker::-webkit-color-swatch {
+            border: none;
+            border-radius: 4px;
+        }
+
+        /* Remove any margin or padding that might be affecting the main content */
+        .header, .icons-grid, .controls-container {
+            margin-left: 0;
+            padding-left: 20px;
+            padding-right: 20px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        /* Ensure the main content container is centered and has max-width */
+        .controls-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .icons-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        @media (max-width: 1024px) {
+            .options-panel {
+                left: 10px;
+                transform: none;
+                top: auto;
+                bottom: -320px;
+                width: calc(100% - 20px);
+                max-width: var(--panel-width);
+                border-radius: 12px 12px 0 0;
+            }
+
+            .options-panel::after {
+                content: '☰';
+                top: -40px;
+                right: 20px;
+                transform: none;
+                border-radius: 8px 8px 0 0;
+                border: 1px solid var(--panel-border);
+                border-bottom: none;
+                width: 60px;
+                height: 40px;
+            }
+
+            .options-panel:hover {
+                left: 10px;
+                bottom: 20px;
+            }
+
+            .header, .icons-grid {
+                margin-left: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 30px 15px;
+            }
+            
+            .controls-container {
+                padding: 0 15px;
+            }
+            
+            .icons-grid {
+                grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+                gap: 15px;
+                padding: 15px;
+            }
+        }
+
+        .size-select {
+            width: 100%;
+            padding: 8px;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            background: var(--option-button-bg);
+            color: var(--option-button-text);
+            cursor: pointer;
+            font-size: 13px;
+            transition: all 0.2s ease;
+        }
+
+        .size-select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-title">
+            <i class="fas fa-icons header-icon"></i>
+            <h1>Font Awesome Icons Gallery</h1>
+        </div>
+        <div class="controls-container">
+            <div class="search-container">
+                <div class="search-wrapper">
+                    <input type="text" id="search" placeholder="Search icons by name or tags...">
+                    <button class="search-clear hidden" id="searchClear">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="version-container">
+                <select id="versionSelect">
+                    <option value="all">All Versions</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    
+    <div class="total-count" id="totalCount"></div>
+    <div class="icons-grid" id="iconsGrid"></div>
+    <div class="toast" id="toast"></div>
+
+    <div class="options-panel" id="optionsPanel">
+        <div class="options-group">
+            <div class="options-title">Copy Options</div>
+            <div class="copy-options">
+                <button class="option-button active" data-format="class">
+                    <i class="fas fa-code"></i>Class Name
+                </button>
+                <button class="option-button" data-format="html">
+                    <i class="fas fa-file-code"></i>HTML
+                </button>
+                <button class="option-button" data-format="react">
+                    <i class="fab fa-react"></i>React Component
+                </button>
+                <button class="option-button" data-format="svg">
+                    <i class="fas fa-image"></i>SVG Code
+                </button>
+                <button class="option-button" data-format="unicode">
+                    <i class="fas fa-terminal"></i>Unicode
+                </button>
+                <button class="option-button" data-format="raw">
+                    <i class="fas fa-download"></i>Download SVG
+                </button>
+            </div>
+        </div>
+        <div class="options-group">
+            <div class="options-title">Icon Size</div>
+            <select id="iconSize" class="size-select">
+                <option value="1x">1x</option>
+                <option value="lg">lg</option>
+                <option value="2x">2x</option>
+                <option value="3x">3x</option>
+                <option value="4x">4x</option>
+                <option value="5x">5x</option>
+                <option value="6x">6x</option>
+                <option value="7x">7x</option>
+                <option value="8x">8x</option>
+                <option value="9x">9x</option>
+                <option value="10x">10x</option>
+            </select>
+        </div>
+        <div class="options-group">
+            <div class="options-title">Icon Color</div>
+            <input type="color" id="iconColorPicker" class="color-picker" value="#333333">
+        </div>
+    </div>
+
+    <footer>
+        <p>
+            Generated by GitHub Copilot <i class="fas fa-robot"></i>
+            • Powered by Font Awesome <i class="fab fa-font-awesome"></i>
+            • <a href="https://github.com/FortAwesome/Font-Awesome" target="_blank">View on GitHub <i class="fab fa-github"></i></a>
+        </p>
+    </footer>
+
+    <script>
+        // Toast notification system
+        const toast = document.getElementById('toast');
+        function showToast(message, duration = 2000) {
+            toast.textContent = message;
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, duration);
+        }
+
+        // Fetch the icons data
+        fetch('metadata/icons.json')
+            .then(response => response.json())
+            .then(icons => {
+                const iconsGrid = document.getElementById('iconsGrid');
+                const searchInput = document.getElementById('search');
+                const versionSelect = document.getElementById('versionSelect');
+                const totalCount = document.getElementById('totalCount');
+                
+                // Collect all unique versions and sort them
+                const versions = new Set();
+                Object.values(icons).forEach(icon => {
+                    if (icon.changes) {
+                        icon.changes.forEach(version => versions.add(version));
+                    }
+                });
+
+                // Convert versions to array and sort by semantic versioning
+                const sortedVersions = Array.from(versions).sort((a, b) => {
+                    const aParts = a.split('.').map(Number);
+                    const bParts = b.split('.').map(Number);
+                    for (let i = 0; i < Math.max(aParts.length, bParts.length); i++) {
+                        const aVal = aParts[i] || 0;
+                        const bVal = bParts[i] || 0;
+                        if (aVal !== bVal) return aVal - bVal;
+                    }
+                    return 0;
+                });
+
+                // Populate version select
+                sortedVersions.forEach(version => {
+                    const option = document.createElement('option');
+                    option.value = version;
+                    option.textContent = `Version ${version}`;
+                    versionSelect.appendChild(option);
+                });
+
+                // Helper function to check if a version is supported
+                function isVersionSupported(iconVersion, selectedVersion) {
+                    if (selectedVersion === 'all') return true;
+                    
+                    const iconParts = iconVersion.split('.').map(Number);
+                    const selectedParts = selectedVersion.split('.').map(Number);
+                    
+                    for (let i = 0; i < Math.max(iconParts.length, selectedParts.length); i++) {
+                        const iconVal = iconParts[i] || 0;
+                        const selectedVal = selectedParts[i] || 0;
+                        if (iconVal !== selectedVal) return iconVal <= selectedVal;
+                    }
+                    return true;
+                }
+
+                function createIconElements(iconsData) {
+                    iconsGrid.innerHTML = '';
+                    const displayedIcons = Object.entries(iconsData).map(([name, data]) => {
+                        const div = document.createElement('div');
+                        div.className = 'icon-item';
+                        div.dataset.name = name;
+                        div.dataset.styles = JSON.stringify(data.styles);
+                        
+                        const tags = data.search?.terms || [];
+                        const versions = data.changes || [];
+
+                        // Create panel with both tags and versions
+                        const tagPanel = `<div class="tag-panel">
+                            ${tags.length > 0 ? `
+                                <div class="tag-section">
+                                    <div class="tag-panel-header">Available Tags:</div>
+                                    ${tags.map(tag => 
+                                        `<button class="tag-button" data-tag="${tag}">${tag}</button>`
+                                    ).join('')}
+                                </div>
+                            ` : ''}
+                            ${versions.length > 0 ? `
+                                <div class="version-section">
+                                    <div class="tag-panel-header">Available Versions:</div>
+                                    ${versions.map(v => 
+                                        `<span class="version-tag" data-version="${v}">v${v}</span>`
+                                    ).join('')}
+                                </div>
+                            ` : ''}
+                        </div>`;
+                        
+                        div.innerHTML = `
+                            <i class="fa${data.styles[0].charAt(0)} fa-${name}"></i>
+                            <div class="icon-name">${name}</div>
+                            ${tagPanel}
+                        `;
+
+                        // Add hover timer and leave timer for tag panel
+                        let hoverTimer;
+                        let leaveTimer;
+                        
+                        function showPanel() {
+                            clearTimeout(leaveTimer);
+                            const rect = div.getBoundingClientRect();
+                            const panel = div.querySelector('.tag-panel');
+                            if (panel) {
+                                if (rect.right + 320 > window.innerWidth) {
+                                    panel.classList.add('show-left');
+                                }
+                                div.classList.add('show-tags');
+                            }
+                        }
+
+                        function hidePanel() {
+                            leaveTimer = setTimeout(() => {
+                                div.classList.remove('show-tags');
+                            }, parseInt(getComputedStyle(document.documentElement)
+                                .getPropertyValue('--panel-leave-delay')));
+                        }
+
+                        div.addEventListener('mouseenter', () => {
+                            clearTimeout(leaveTimer);
+                            hoverTimer = setTimeout(showPanel, 
+                                parseInt(getComputedStyle(document.documentElement)
+                                    .getPropertyValue('--hover-delay')));
+                        });
+
+                        const panel = div.querySelector('.tag-panel');
+                        if (panel) {
+                            panel.addEventListener('mouseenter', () => {
+                                clearTimeout(leaveTimer);
+                                clearTimeout(hoverTimer);
+                                div.classList.add('show-tags');
+                            });
+
+                            panel.addEventListener('mouseleave', hidePanel);
+                        }
+
+                        div.addEventListener('mouseleave', (e) => {
+                            clearTimeout(hoverTimer);
+                            // Only start hide timer if we're not entering the panel
+                            if (!e.relatedTarget || !e.relatedTarget.closest('.tag-panel')) {
+                                hidePanel();
+                            }
+                        });
+
+                        // Handle tag and version clicks
+                        div.addEventListener('click', (e) => {
+                            if (e.target.classList.contains('tag-button')) {
+                                e.stopPropagation(); // Prevent icon copy
+                                const tag = e.target.dataset.tag;
+                                searchInput.value = tag;
+                                updateClearButton(); // Make sure clear button shows up
+                                filterIcons(tag);
+                                return;
+                            }
+
+                            if (e.target.classList.contains('version-tag')) {
+                                e.stopPropagation(); // Prevent icon copy
+                                const version = e.target.dataset.version;
+                                versionSelect.value = version;
+                                versionSelect.dispatchEvent(new Event('change'));
+                                return;
+                            }
+
+                            // Default icon click behavior
+                            const iconClass = `fa${data.styles[0].charAt(0)} fa-${name}`;
+                            navigator.clipboard.writeText(iconClass);
+                            showToast(`Copied: ${iconClass}`);
+                        });
+
+                        return div;
+                    });
+
+                    displayedIcons.forEach(div => iconsGrid.appendChild(div));
+                    totalCount.textContent = `Showing ${displayedIcons.length} icons`;
+                }
+
+                // Add search clear functionality
+                const searchClear = document.getElementById('searchClear');
+
+                function updateClearButton() {
+                    if (searchInput.value) {
+                        searchClear.classList.remove('hidden');
+                    } else {
+                        searchClear.classList.add('hidden');
+                    }
+                }
+
+                searchInput.addEventListener('input', () => {
+                    updateClearButton();
+                    filterIcons();
+                });
+                
+                searchClear.addEventListener('click', () => {
+                    searchInput.value = '';
+                    searchInput.focus();
+                    updateClearButton();
+                    filterIcons();
+                });
+
+                // Filter icons based on search input and version select
+                function filterIcons(searchTerm) {
+                    searchTerm = (searchTerm || searchInput.value.trim()).toLowerCase();
+                    const selectedVersion = versionSelect.value;
+                    
+                    const filteredIcons = Object.fromEntries(
+                        Object.entries(icons).filter(([name, data]) => {
+                            // Check if matches search term
+                            const matchesSearch = 
+                                name.toLowerCase().includes(searchTerm) || 
+                                (data.search?.terms || []).some(tag => 
+                                    tag.toLowerCase().includes(searchTerm)
+                                );
+
+                            // Check version compatibility
+                            const matchesVersion = selectedVersion === 'all' || 
+                                (data.changes && data.changes.some(version => 
+                                    isVersionSupported(version, selectedVersion)
+                                ));
+                            
+                            return matchesSearch && matchesVersion;
+                        })
+                    );
+                    
+                    createIconElements(filteredIcons);
+                }
+
+                // Add event listener for version select
+                versionSelect.addEventListener('change', () => filterIcons());
+
+                // Initial icon display
+                createIconElements(icons);
+
+                // Options panel functionality
+                const optionsPanel = document.getElementById('optionsPanel');
+                const iconColorPicker = document.getElementById('iconColorPicker');
+
+                // Handle copy format selection
+                document.querySelectorAll('.option-button').forEach(button => {
+                    button.addEventListener('click', () => {
+                        document.querySelectorAll('.option-button').forEach(btn => 
+                            btn.classList.remove('active')
+                        );
+                        button.classList.add('active');
+                    });
+                });
+
+                // Copy icon based on selected format
+                iconsGrid.addEventListener('click', (e) => {
+                    const iconItem = e.target.closest('.icon-item');
+                    if (!iconItem) return;
+
+                    const format = document.querySelector('.option-button.active').dataset.format;
+                    const name = iconItem.dataset.name;
+                    const styles = JSON.parse(iconItem.dataset.styles);
+                    const style = styles[0];
+                    const prefix = `fa${style.charAt(0)}`;
+                    const color = iconColorPicker.value;
+                    const size = document.getElementById('iconSize').value;
+                    const sizeClass = size === '1x' ? '' : ` fa-${size}`;
+                    
+                    let copyText = '';
+                    switch(format) {
+                        case 'class':
+                            copyText = `${prefix} fa-${name}${sizeClass}`;
+                            break;
+                        case 'html':
+                            copyText = `<i class="${prefix} fa-${name}${sizeClass}" style="color: ${color};"></i>`;
+                            break;
+                        case 'react':
+                            copyText = `<FontAwesomeIcon icon={['${style}', '${name}']} size="${size}" style={{ color: '${color}' }} />`;
+                            break;
+                        case 'svg':
+                            fetch(`svgs/${style}/${name}.svg`)
+                                .then(response => response.text())
+                                .then(svgContent => {
+                                    // Process SVG content to include color and size
+                                    const parser = new DOMParser();
+                                    const svgDoc = parser.parseFromString(svgContent, 'image/svg+xml');
+                                    const svg = svgDoc.querySelector('svg');
+                                    svg.style.color = color;
+                                    svg.setAttribute('width', `${parseInt(size) * 16}px`);
+                                    svg.setAttribute('height', `${parseInt(size) * 16}px`);
+                                    copyText = svg.outerHTML;
+                                    navigator.clipboard.writeText(copyText);
+                                    showToast(`Copied SVG code for ${name}`);
+                                })
+                                .catch(error => {
+                                    console.error('Error copying SVG:', error);
+                                    showToast('Error copying SVG code');
+                                });
+                            return;
+                        case 'unicode':
+                            copyText = styles.map(s => String.fromCodePoint(parseInt(s.unicode, 16))).join('');
+                            break;
+                        case 'raw':
+                            const svgPath = `svgs/${style}/${name}.svg`;
+                            fetch(svgPath)
+                                .then(response => response.text())
+                                .then(svgContent => {
+                                    const blob = new Blob([svgContent], { type: 'image/svg+xml' });
+                                    const url = URL.createObjectURL(blob);
+                                    const a = document.createElement('a');
+                                    a.href = url;
+                                    a.download = `${name}.svg`;
+                                    document.body.appendChild(a);
+                                    a.click();
+                                    document.body.removeChild(a);
+                                    URL.revokeObjectURL(url);
+                                    showToast(`Downloading ${name}.svg`);
+                                })
+                                .catch(error => {
+                                    console.error('Error downloading SVG:', error);
+                                    showToast('Error downloading SVG file');
+                                });
+                            return;
+                    }
+
+                    if (format !== 'svg' && format !== 'raw') {
+                        navigator.clipboard.writeText(copyText);
+                        showToast(`Copied ${format} format: ${copyText}`);
+                    }
+                });
+
+                // Icon color picker
+                iconColorPicker.addEventListener('input', (e) => {
+                    const color = e.target.value;
+                    document.documentElement.style.setProperty('--text-primary', color);
+                    document.querySelectorAll('.icon-item i').forEach(icon => {
+                        icon.style.color = color;
+                    });
+                });
+            });
+    </script>
+</body>
+</html>
