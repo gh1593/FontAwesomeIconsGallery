@@ -15,6 +15,7 @@ This project provides a gallery interface for browsing and selecting Font Awesom
 
 ## Features
 - Click to copy any icon code, or download the svg directly
+- Search by name, tag, version
 - Browse through Font Awesome icon collection
 - View icons in different styles
 - Easy to use interface
